@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lewi Hotel - Digital Menu Prototype</title>
+    <title>ELU-COFFEE-HOUSE - Digital Menu Prototype</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -13,6 +13,7 @@
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
             --border-color: rgba(255,255,255,0.05);
+            --star-color: #ffd700;
         }
 
         * {
@@ -40,11 +41,56 @@
             border: 1px solid var(--border-color);
         }
 
+        /* Language Toggle Bar */
+        .lang-switch-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: var(--accent-color);
+            color: #121212;
+        }
+
         .header {
             text-align: center;
             margin-bottom: 25px;
             border-bottom: 1px solid rgba(197, 168, 128, 0.2);
             padding-bottom: 15px;
+        }
+
+        .logo-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            padding: 4px;
+            background: rgba(255,255,255,0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .brand-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .header h1 {
@@ -62,7 +108,65 @@
             letter-spacing: 1px;
         }
 
-        /* Category Tabs */
+        .nav-payment-bar {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-payment-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .payment-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        .payment-badge:hover {
+            transform: translateY(-1px);
+        }
+
+        .badge-telebirr {
+            background: rgba(0, 136, 204, 0.2);
+            color: #38b6ff;
+            border: 1px solid rgba(0, 136, 204, 0.4);
+        }
+
+        .badge-cbe {
+            background: rgba(139, 29, 131, 0.2);
+            color: #e066ff;
+            border: 1px solid rgba(139, 29, 131, 0.4);
+        }
+
+        .badge-info {
+            background: rgba(197, 168, 128, 0.15);
+            color: var(--accent-color);
+            border: 1px solid rgba(197, 168, 128, 0.3);
+        }
+
         .categories {
             display: flex;
             gap: 8px;
@@ -100,17 +204,15 @@
             box-shadow: 0 4px 12px rgba(197, 168, 128, 0.3);
         }
 
-        /* Menu Grid Section */
         .menu-list {
             display: flex;
             flex-direction: column;
-            gap: 24px; /* Increased spacing between cards */
+            gap: 24px;
         }
 
-        /* Top Image, Bottom Text Card Layout */
         .menu-item {
             display: flex;
-            flex-direction: column; /* Stack vertically: image top, text bottom */
+            flex-direction: column;
             background: rgba(255,255,255,0.02);
             border-radius: 16px;
             overflow: hidden;
@@ -119,10 +221,9 @@
             animation: fadeIn 0.5s ease forwards;
         }
 
-        /* Image at the Top */
         .item-image-container {
             width: 100%;
-            height: 200px; /* Gives the food photography center stage */
+            height: 200px;
             overflow: hidden;
         }
 
@@ -137,7 +238,6 @@
             transform: scale(1.05);
         }
 
-        /* Details at the Bottom */
         .item-details {
             padding: 16px;
         }
@@ -172,6 +272,138 @@
             line-height: 1.5;
         }
 
+        .feedback-bar {
+            margin-top: 0px;
+            margin-bottom: 15px;
+            background: rgba(197, 168, 128, 0.05);
+            border: 1px dashed rgba(197, 168, 128, 0.3);
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .feedback-text {
+            font-size: 0.85rem;
+            color: var(--text-main);
+        }
+
+        .feedback-btn {
+            background: var(--accent-color);
+            color: #121212;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .feedback-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .payment-row:last-child {
+            border-bottom: none;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 15px 0;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .star {
+            color: #444444;
+            transition: color 0.2s ease;
+        }
+
+        .star.selected, .star:hover {
+            color: var(--star-color);
+        }
+
+        .feedback-textarea {
+            width: 100%;
+            height: 90px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-main);
+            padding: 10px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            resize: none;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .feedback-textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--accent-color);
+            color: #121212;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
         .footer-note {
             text-align: center;
             margin-top: 40px;
@@ -199,54 +431,237 @@
 <body>
 
     <div class="menu-container">
+        <div class="lang-switch-container">
+            <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">🇬🇧 English</button>
+        </div>
+
         <div class="header">
-            <h1>LEWI HOTEL</h1>
-            <p>Premium Digital Menu</p>
+            <div class="logo-wrapper">
+                <img src="elu logo.jpg" alt="ELU Logo" class="brand-logo">
+            </div>
+            <h1>ELU-COFFEE-HOUSE</h1>
+            <p id="subHeaderTitle">Premium Digital Menu</p>
         </div>
 
-        <!-- Filter Tabs -->
-        <div class="categories">
-            <button class="tab active" onclick="filterMenu('all', this)">All Items</button>
-            <button class="tab" onclick="filterMenu('Beef Dish', this)">Beef Dishes</button>
-            <button class="tab" onclick="filterMenu('Lamb Dish', this)">Lamb Dishes</button>
-            <button class="tab" onclick="filterMenu('Poultry Dish', this)">Poultry Dishes</button>
-            <button class="tab" onclick="filterMenu('Vegetarian Dish', this)">Vegetarian Dishes</button>
-            <button class="tab" onclick="filterMenu('Beverage', this)">Beverages</button>
-            <button class="tab" onclick="filterMenu('Extras & Side Items', this)">Extras & Side Items</button>
-
-
+        <div class="nav-payment-bar">
+            <span class="nav-payment-title" id="paymentTitle">የክፍያ አማራጮች</span>
+            <div class="payment-icons">
+                <span class="payment-badge badge-telebirr" onclick="togglePaymentModal()">telebirr</span>
+                <span class="payment-badge badge-cbe" onclick="togglePaymentModal()">CBE </span>
+                <span class="payment-badge badge-info" onclick="togglePaymentModal()" id="badgeInfo">Info</span>
+            </div>
         </div>
 
-        <!-- Menu List -->
-        <div class="menu-list" id="menu-list">
-            <!-- Items loaded dynamically by JS -->
+        <div class="feedback-bar">
+            <div class="feedback-text">
+                <strong id="fbTitle">ቆይታዎ እንዴት ነበር?</strong>
+                <div id="fbSub" style="font-size: 0.75rem; color: var(--text-muted);">የኤሉ ካፌን አገልግሎት ከፍ ለማድረግ ሀሳብዎን ያጋሩ</div>
+            </div>
+            <button class="feedback-btn" id="fbBtn" onclick="toggleFeedbackModal()">አስተያየትዎን ይስጡን</button>
         </div>
+
+        <div class="categories" id="categoryContainer">
+            <button class="tab active" data-cat="all" onclick="filterMenu('all', this)">All Items</button>
+            <button class="tab" data-cat="ባህላዊ ምግቦች" onclick="filterMenu('ባህላዊ ምግቦች', this)">ባህላዊ ምግቦች</button>
+            <button class="tab" data-cat="ቁርስ" onclick="filterMenu('ቁርስ', this)">ቁርስ</button>
+            <button class="tab" data-cat="ትኩስ" onclick="filterMenu('ትኩስ', this)">ትኩስ</button>
+            <button class="tab" data-cat="ለስላሳ መጠጦች" onclick="filterMenu('ለስላሳ መጠጦች', this)">ለስላሳ መጠጦች</button>
+        </div>
+
+        <div class="menu-list" id="menu-list"></div>
 
         <div class="footer-note">
-      <p>Consuming raw or undercooked meats warning:</p>
-      <a href="#" class="dev-credit">"Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness, especially if you have certain medical conditions."</a>
-   <p>Injera Information:</p>     
-    <a href="#" class="dev-credit">"For thousands of years, Ethiopians make traditional bread called 'injera' it is sourdough risen flat bread with a unique, slightly spongy texture. Traditionally made out of teff flour. When eating an Ethiopian meal injera serves both as your platter and utensil."</a>  
- <p>Prices include service charge & VAT.</p>
-            <p>Menu design & functionality by:</p>
+            <p id="warnHeading">Consuming raw or undercooked meats warning:</p>
+            <a href="#" class="dev-credit" id="warnBody">"Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness, especially if you have certain medical conditions."</a>
+            <p id="injeraHeading" style="margin-top: 10px;">Injera Information:</p>     
+            <a href="#" class="dev-credit" id="injeraBody">"For thousands of years, Ethiopians make traditional bread called 'injera' it is sourdough risen flat bread with a unique, slightly spongy texture. Traditionally made out of teff flour. When eating an Ethiopian meal injera serves both as your platter and utensil."</a>   
+            <p id="vatNotice" style="margin-top: 10px;">Prices include service charge & VAT.</p>
+            <p id="devNotice" style="margin-top: 10px;">Menu design & functionality by:</p>
             <a href="#" class="dev-credit">ABDI ABERA | WEB SOLUTIONS</a>
         </div>
     </div>
 
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="togglePaymentModal()">&#10005;</button>
+            <h3 style="color: var(--accent-color); margin-bottom: 15px;" id="pmHeading">Payment Options</h3>
+            
+            <div class="payment-row">
+                <div>
+                    <strong style="color: #38b6ff;">Telebirr / CBE Birr</strong>
+                    <div style="font-size:0.8rem; color:var(--text-muted);" id="pmPhone">Phone Number</div>
+                </div>
+                <div style="font-weight:600;">+251925256424</div>
+            </div>
+
+            <div class="payment-row">
+                <div>
+                    <strong style="color: #e066ff;">CBE Bank</strong>
+                    <div style="font-size:0.8rem; color:var(--text-muted);" id="pmAcc">Account Number</div>
+                </div>
+                <div style="font-weight:600;">1000298742288</div>
+            </div>
+
+            <div class="payment-row">
+                <div>
+                    <strong style="color: var(--accent-color);" id="pmCashTitle">Cash / Card</strong>
+                    <div style="font-size:0.8rem; color:var(--text-muted);" id="pmCounter">At Counter or Table</div>
+                </div>
+                <div style="font-weight:600;" id="pmAccepted">Accepted</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="feedbackModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="toggleFeedbackModal()">&#10005;</button>
+            <h3 style="color: var(--accent-color); text-align: center; margin-bottom: 5px;" id="fmTitle">Your Feedback</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center;" id="fmSub">Rate your visit and share your thoughts</p>
+
+            <div class="star-rating" id="starRating">
+                <span class="star" onclick="setRating(1)">&#9733;</span>
+                <span class="star" onclick="setRating(2)">&#9733;</span>
+                <span class="star" onclick="setRating(3)">&#9733;</span>
+                <span class="star" onclick="setRating(4)">&#9733;</span>
+                <span class="star" onclick="setRating(5)">&#9733;</span>
+            </div>
+
+            <textarea class="feedback-textarea" id="feedbackComment" placeholder="Write your comments or recommendations..."></textarea>
+            <button class="submit-btn" id="fmSubmitBtn" onclick="submitFeedback()">Send Feedback</button>
+        </div>
+    </div> 
+
 <script>
-    // 1. Your Google Sheet CSV Link
-    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQn3G8iKEj-jmUX6O39xPxqkW6XYgZZ65FZNgzqrw0EO4BxgwIY7rPuk3bUkRTtN4lk0HoZJ1pzkgwD/pub?gid=0&single=true&output=csv";
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSiyRA3eEU5x_uY_Isp_935li1VX4d39-UC649B8mOdNjz2czWvf7IxVUhUSeP_-32s0WTFhIZilSMJ/pub?output=csv";
     
     let globalMenuData = [];
+    let selectedRating = 0;
+    let currentLanguage = 'am'; // Default language ('am' or 'en')
+    let currentActiveCategory = 'all';
 
-    // 2. Fetch Live Data from Google Sheets
+    // Text translations dictionary
+    const translations = {
+        am: {
+            langToggle: "🇬🇧 English",
+            subHeaderTitle: "የዲጂታል ሜኑ አገልግሎት",
+            paymentTitle: "የክፍያ አማራጮች",
+            badgeInfo: "መረጃ",
+            fbTitle: "ቆይታዎ እንዴት ነበር?",
+            fbSub: "የኤሉ ካፌን አገልግሎት ከፍ ለማድረግ ሀሳብዎን ያጋሩ",
+            fbBtn: "አስተያየትዎን ይስጡን",
+            warnHeading: "ያልበሰሉ ምግቦች ማሳሰቢያ፡",
+            warnBody: "ያልበሰሉ ወይም በደንብ ያልተጠበሱ ሥጋዎች፣ የባህር ምግቦች ወይም እንቁላሎችን መመገብ ለምግብ ወለድ በሽታዎች ሊያጋልጥ ይችላል።",
+            injeraHeading: "ስለ እንጀራ መረጃ፡",
+            injeraBody: "ኢትዮጵያውያን ለሺህ ዓመታት እንጀራን እንደ ዋና ምግብ ሲጠቀሙ ቆይተዋል። ከጤፍ ዱቄት የሚዘጋጅ ሲሆን፣ እንደ ሳህን እና መመገቢያ ቁሳቁስም ያገለግላል።",
+            vatNotice: "ዋጋዎች ሰርቪስ ቻርጅ እና ቫትን ያካተቱ ናቸው።",
+            devNotice: "የሜኑ ዲዛይን እና ሶፍትዌር ስራ፡",
+            pmHeading: "የክፍያ አማራጮች",
+            pmPhone: "ስልክ ቁጥር",
+            pmAcc: "የሂሳብ ቁጥር",
+            pmCashTitle: "ጥሬ ገንዘብ / ካርድ",
+            pmCounter: "በካሸር ወይም በጠረጴዛው ላይ",
+            pmAccepted: "ይቀበላሉ",
+            fmTitle: "አስተያየትዎ",
+            fmSub: "አገልግሎታችንን ይመዝኑ እና ሀሳብዎን ያጋሩ",
+            fmPlaceholder: "አስተያየትዎን ወይም ሀሳብዎን እዚህ ይፃፉ...",
+            fmSubmitBtn: "አስተያየት ላክ",
+            tabs: {
+                "all": "ሁሉም",
+                "ባህላዊ ምግቦች": "ባህላዊ ምግቦች",
+                "ቁርስ": "ቁርስ",
+                "ትኩስ": "ትኩስ",
+                "ለስላሳ መጠጦች": "ለስላሳ መጠጦች"
+            }
+        },
+        en: {
+            langToggle: "🇪🇹 አማርኛ",
+            subHeaderTitle: "Premium Digital Menu",
+            paymentTitle: "Payment Options",
+            badgeInfo: "Info",
+            fbTitle: "How was your visit?",
+            fbSub: "Share your feedback to help us improve Elu Coffee House",
+            fbBtn: "Give Feedback",
+            warnHeading: "Consuming raw or undercooked meats warning:",
+            warnBody: "Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness, especially if you have certain medical conditions.",
+            injeraHeading: "Injera Information:",
+            injeraBody: "For thousands of years, Ethiopians make traditional bread called 'injera' it is sourdough risen flat bread with a unique, slightly spongy texture. Traditionally made out of teff flour. When eating an Ethiopian meal injera serves both as your platter and utensil.",
+            vatNotice: "Prices include service charge & VAT.",
+            devNotice: "Menu design & functionality by:",
+            pmHeading: "Payment Options",
+            pmPhone: "Phone Number",
+            pmAcc: "Account Number",
+            pmCashTitle: "Cash / Card",
+            pmCounter: "At Counter or Table",
+            pmAccepted: "Accepted",
+            fmTitle: "Your Feedback",
+            fmSub: "Rate your visit and share your thoughts",
+            fmPlaceholder: "Write your comments or recommendations...",
+            fmSubmitBtn: "Send Feedback",
+            tabs: {
+                "all": "All Items",
+                "ባህላዊ ምግቦች": "Cultural Foods",
+                "ቁርስ": "Breakfast",
+                "ትኩስ": "Hot Beverages",
+                "ለስላሳ መጠጦች": "Soft Drinks"
+            }
+        }
+    };
+
+    // Toggle Language Function
+    function toggleLanguage() {
+        currentLanguage = (currentLanguage === 'am') ? 'en' : 'am';
+        applyTranslations();
+    }
+
+    function applyTranslations() {
+        const t = translations[currentLanguage];
+        
+        document.getElementById('langToggleBtn').innerText = t.langToggle;
+        document.getElementById('subHeaderTitle').innerText = t.subHeaderTitle;
+        document.getElementById('paymentTitle').innerText = t.paymentTitle;
+        document.getElementById('badgeInfo').innerText = t.badgeInfo;
+        document.getElementById('fbTitle').innerText = t.fbTitle;
+        document.getElementById('fbSub').innerText = t.fbSub;
+        document.getElementById('fbBtn').innerText = t.fbBtn;
+        document.getElementById('warnHeading').innerText = t.warnHeading;
+        document.getElementById('warnBody').innerText = t.warnBody;
+        document.getElementById('injeraHeading').innerText = t.injeraHeading;
+        document.getElementById('injeraBody').innerText = t.injeraBody;
+        document.getElementById('vatNotice').innerText = t.vatNotice;
+        document.getElementById('devNotice').innerText = t.devNotice;
+        
+        document.getElementById('pmHeading').innerText = t.pmHeading;
+        document.getElementById('pmPhone').innerText = t.pmPhone;
+        document.getElementById('pmAcc').innerText = t.pmAcc;
+        document.getElementById('pmCashTitle').innerText = t.pmCashTitle;
+        document.getElementById('pmCounter').innerText = t.pmCounter;
+        document.getElementById('pmAccepted').innerText = t.pmAccepted;
+        
+        document.getElementById('fmTitle').innerText = t.fmTitle;
+        document.getElementById('fmSub').innerText = t.fmSub;
+        document.getElementById('feedbackComment').placeholder = t.fmPlaceholder;
+        document.getElementById('fmSubmitBtn').innerText = t.fmSubmitBtn;
+
+        // Update Tab Labels
+        const tabs = document.querySelectorAll('.categories .tab');
+        tabs.forEach(tab => {
+            const catKey = tab.getAttribute('data-cat');
+            if (t.tabs[catKey]) {
+                tab.innerText = t.tabs[catKey];
+            }
+        });
+
+        // Re-render currently active menu view
+        filterMenu(currentActiveCategory, document.querySelector(`.tab[data-cat="${currentActiveCategory}"]`));
+    }
+
+    // Fetch Live Data from Google Sheets
     async function loadMenuFromSheet() {
         try {
             const response = await fetch(SHEET_URL);
             const data = await response.text();
             
-            // Parse CSV rows into objects
-            const rows = data.split("\n").slice(1); // skip headers row
+            const rows = data.split("\n").slice(1);
             globalMenuData = rows.map(row => {
                 const columns = row.split(",");
                 return {
@@ -256,15 +671,15 @@
                     img: columns[3]?.trim(),
                     desc: columns[4]?.trim()
                 };
-            }).filter(item => item.name); // Filter out empty rows
+            }).filter(item => item.name);
 
-            renderMenu(globalMenuData);
+            applyTranslations();
         } catch (error) {
             document.getElementById('menu-list').innerHTML = "<p style='color:red; text-align:center;'>Error loading live menu data.</p>";
         }
     }
 
-    // 3. Render Cards to the Screen
+    // Render Cards
     function renderMenu(items) {
         const menuContainer = document.getElementById('menu-list');
         menuContainer.innerHTML = '';
@@ -288,11 +703,12 @@
         });
     }
 
-    // 4. Category Filter Tabs Logic
+    // Category Filter Tabs Logic
     function filterMenu(category, clickedTab) {
+        currentActiveCategory = category;
         const tabs = document.querySelectorAll('.tab');
         tabs.forEach(tab => tab.classList.remove('active'));
-        clickedTab.classList.add('active');
+        if(clickedTab) clickedTab.classList.add('active');
 
         if (category === 'all') {
             renderMenu(globalMenuData);
@@ -302,7 +718,89 @@
         }
     }
 
-    // 5. Run the function when page loads
+    // Modal & Star Rating Functions
+    function togglePaymentModal() {
+        const modal = document.getElementById('paymentModal');
+        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function toggleFeedbackModal() {
+        const modal = document.getElementById('feedbackModal');
+        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function setRating(rating) {
+        selectedRating = rating;
+        const stars = document.querySelectorAll('.star');
+        stars.forEach((star, idx) => {
+            if (idx < rating) {
+                star.classList.add('selected');
+            } else {
+                star.classList.remove('selected');
+            }
+        });
+    }
+
+    // Telegram Feedback Handler
+    const TELEGRAM_BOT_TOKEN = "8947029118:AAFSWrtOKcW2MrsTJ38v3Hsck59EsqtUAbU";
+    const TELEGRAM_CHAT_ID = "6222942056";
+
+    async function submitFeedback() {
+        if (selectedRating === 0) {
+            alert(currentLanguage === 'am' ? "እባክዎን የኮከብ ደረጃ ይምረጡ!" : "Please select a star rating!");
+            return;
+        }
+
+        const commentInput = document.getElementById('feedbackComment');
+        const comment = commentInput.value.trim();
+        const submitBtn = document.getElementById('fmSubmitBtn');
+
+        const starsText = "⭐".repeat(selectedRating);
+        let message = `<b>NEW FEEDBACK - ELU-COFFEE-HOUSE</b>\n\n`;
+        message += `<b>Rating:</b> ${starsText} (${selectedRating}/5)\n`;
+        if (comment) {
+            message += `<b>Comment:</b> ${comment}\n`;
+        }
+
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = currentLanguage === 'am' ? "እየላከ ነው..." : "Sending...";
+        submitBtn.disabled = true;
+
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: "HTML"
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.ok) {
+                alert(currentLanguage === 'am' ? "እናመሰግናለን! አስተያየትዎ ተልኳል።" : "Thank you! Your feedback has been sent.");
+                toggleFeedbackModal();
+                selectedRating = 0;
+                setRating(0);
+                commentInput.value = '';
+            } else {
+                console.error("Telegram Error:", data);
+                alert("Failed to send feedback. Please check your Bot Token and Chat ID.");
+            }
+        } catch (error) {
+            console.error("Network Error:", error);
+            alert("A network error occurred. Please check your internet connection.");
+        } finally {
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    } 
+
+    // Run initial load
     loadMenuFromSheet();
 </script>
 </body>
